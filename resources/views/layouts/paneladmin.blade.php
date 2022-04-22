@@ -15,14 +15,11 @@
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-        
-        @include('inc.mainmenu')
-        
+        @include('admin.includes.mainmenu')
         @yield('paneladmin')
-
-        @include('inc.footer')
+        @include('admin.includes.footer')
     </div>
-    
+
     <script src="{{ asset('panel/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('panel/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('panel/dist/js/adminlte.js') }}"></script>
@@ -33,6 +30,6 @@
             $('[data-mask').inputmask()
         });
     </script>
-    
+
 </body>
 </html>
