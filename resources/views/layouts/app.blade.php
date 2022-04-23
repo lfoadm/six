@@ -38,7 +38,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a href="{{ route('pages.index') }}" class="nav-link scrollto active">Home</a></li>
-                    <li><a class="nav-link scrollto" href="{{ route('admin.panel') }}">Painel</a></li>
+                    <li><a class="nav-link scrollto" href="{{ route('admin.login') }}">Painel</a></li>
                 </ul>
                 <!-- icone de menu para mobile -->
                 <i class="bi bi-list mobile-nav-toggle"></i>
