@@ -198,7 +198,7 @@
                 </li> --}}
                 @if(Session::get('lg_permissao001'))
                 <li class="nav-item">
-                    <a href="{{-- route('usuarios.index') --}}" class="nav-link">
+                    <a href="{{ route('usuarios.index') }}" class="nav-link">
                         <i class="fas fa-users"></i>
                         <p>Usuários</p>
                     </a>

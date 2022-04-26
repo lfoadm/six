@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class PanelController extends Controller
+class panelController extends Controller
 {
     public function login()
     {
