@@ -16,3 +16,5 @@ Route::get('/paneladmin/homeadmin', [panelController::class, 'homeadmin'])->name
 
 //Administração de usuários
 Route::get('/paneladmin/p-usuarios', [usuariosController::class, 'index'])->name('usuarios.index');
+Route::get('/paneladmin/p-usuarios-incluir', [usuariosController::class, 'create'])->name('usuarios.create');
+Route::post('/paneladmin/p-usuarios-salva-inclusao', [usuariosController::class, 'store'])->name('usuarios.store');
