@@ -48,25 +48,34 @@
                                                                 @endif
                                                             </td>
                                                             <td style="width: 15%">
-                                                                <a href="{{ route('usuarios.edit',['id'=>$dado->id]) }}"><i class="fas fa-edit" style="color: black; margin-right:10px"></i></a>
-                                                                <a href="{{-- route('usuarios.permissoes.show',['id'=>$dado->id]) --}}"><i class="fas fa-user-lock" style="color: black; margin-right:10px"></i></a>
-                                                                <a href="{{ route('usuarios.show',['id'=>$dado->id]) }}"><i class="fas fa-trash-alt" style="color:brown; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.edit',['id'=>$dado->id]) }}">
+                                                                    <i class="fas fa-edit" style="color: black; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.permissoes.show',['id'=>$dado->id]) }}">
+                                                                    <i class="fas fa-user-lock" style="color: black; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.show',['id'=>$dado->id]) }}">
+                                                                    <i class="fas fa-trash-alt" style="color:brown; margin-right:10px"></i></a>
                                                                 @if($dado->ativo)
-                                                                    <a href="/paneladmin/p-usuarios-desativar/{{ $dado->id }}"><i class="fas fa-user-slash" style="color:black; margin-right:10px"></i></a>
+                                                                    {{-- <a href="/paneladmin/p-usuarios-desativar/{{ $dado->id }}"> --}}
+                                                                        <a href="{{ route('usuarios.desativar', $dado->id) }}">
+                                                                        <i class="fas fa-user-slash" style="color:crimson; margin-right:10px"></i></a>
                                                                 @else
-                                                                    <a href="/paneladmin/p-usuarios-ativar/{{ $dado->id }}"><i class="fas fa-user-check" style="color: black; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.ativar', $dado->id) }}">
+                                                                        <i class="fas fa-user-check" style="color:darkcyan; margin-right:10px"></i></a>
                                                                 @endif
                                                             </td>
                                                         </tr>
                                                     @endforeach
                                                 </tbody>
                                 </table>
-                                <div>
-                                    {{$dados->links()}}
-                                </div>
+
                             </div>
+
                         </div>
+
+                    <div>
+                        {{$dados->links()}}
                     </div>
+                </div>
                 </div>
             </div>
         </div>

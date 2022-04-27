@@ -16,7 +16,7 @@ class usuariosController extends Controller
     {
         if(Session::get('lg_logado') && Session::get('lg_permissao001'))
         {
-            $dados = DB::table('t_usuarios')->where('t_usuarios.id', '!=', Session::get('lg_id'))->orderBy('nome', 'asc')->paginate(10);
+            $dados = DB::table('t_usuarios')->where('t_usuarios.id', '!=', Session::get('lg_id'))->orderBy('nome', 'asc')->paginate(2);
             return view('admin.panel.p-list-usuarios', compact('dados'));
         }
         else
@@ -53,7 +53,7 @@ class usuariosController extends Controller
             $dados->email = $request->email;
             $dados->ativo = true;
             $dados->save();
-            return redirect()->route('usuarios.index')->with('success', 'Usuário criado com sucesso!');;
+            return redirect()->route('usuarios.index')->with('success', 'Usuário criado com sucesso!');
         }
         else
         {
@@ -120,6 +120,74 @@ class usuariosController extends Controller
         {
             t_usuarios::destroy($request->id);
             return redirect()->route('usuarios.index')->with('danger', 'Usuário apagado!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+    //=================== LISTA AS PERMISSÕES DO USUÁRIO ======================================//
+    public function frm_usuarios_permissoes($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao001'))
+        {
+            $dados = t_usuarios::find($id);
+            return view('admin.panel.p-frm-usuarios_permissoes', compact('dados'));
+        }
+        else
+        {
+            redirect()->route('formLogin');
+        }
+    }
+
+    //=================== SALVA AS PERMISSÕES DO USUÁRIO ======================================//
+    public function frm_usuarios_permissoes_salva(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao001'))
+        {
+            $dados = t_usuarios::find($request->id);
+            $dados->permissao001 = $request->boolean('permissao001');
+            $dados->permissao002 = $request->boolean('permissao002');
+            $dados->permissao003 = $request->boolean('permissao003');
+            $dados->permissao004 = $request->boolean('permissao004');
+            $dados->permissao005 = $request->boolean('permissao005');
+            $dados->permissao006 = $request->boolean('permissao006');
+            $dados->save();
+            return redirect()->route('usuarios.index')->with('success', 'Permissões habilitadas com sucesso!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+
+    //=================== DESATIVAR USUÁRIO ======================================//
+    public function frm_usuarios_desativar($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao001'))
+        {
+            $dados = t_usuarios::find($id);
+            $dados->ativo = false;
+            $dados->save();
+            return redirect()->route('usuarios.index')->with('danger', 'Usuário desativado!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+    //ativar usuarios
+    public function frm_usuarios_ativar($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao001'))
+        {
+            $dados = t_usuarios::find($id);
+            $dados->ativo = true;
+            $dados->save();
+            return redirect()->route('usuarios.index')->with('success', 'Usuário ativado!');
         }
         else
         {

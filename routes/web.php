@@ -22,3 +22,11 @@ Route::get('/paneladmin/p-usuarios-editar/{id}', [usuariosController::class, 'ed
 Route::post('/paneladmin/p-usuarios-salva-alteracao', [usuariosController::class, 'update'])->name('usuarios.update');
 Route::get('/paneladmin/p-usuarios-excluir/{id}', [usuariosController::class, 'show'])->name('usuarios.show');
 Route::post('/paneladmin/p-usuarios-salva-exclusao', [usuariosController::class, 'destroy'])->name('usuarios.destroy');
+
+//Permissões de usuários
+Route::get('/paneladmin/p-usuarios-permissoes/{id}', [usuariosController::class, 'frm_usuarios_permissoes'])->name('usuarios.permissoes.show');
+Route::post('/paneladmin/p-usuarios-salva-permissoes', [usuariosController::class, 'frm_usuarios_permissoes_salva'])->name('usuarios.permissoes.store');
+
+//Status de usuários
+Route::get('/paneladmin/p-usuarios-desativar/{id}', [usuariosController::class, 'frm_usuarios_desativar'])->name('usuarios.desativar');
+Route::get('/paneladmin/p-usuarios-ativar/{id}', [usuariosController::class, 'frm_usuarios_ativar'])->name('usuarios.ativar');
