@@ -30,3 +30,5 @@ Route::post('/paneladmin/p-usuarios-salva-permissoes', [usuariosController::clas
 //Status de usuários
 Route::get('/paneladmin/p-usuarios-desativar/{id}', [usuariosController::class, 'frm_usuarios_desativar'])->name('usuarios.desativar');
 Route::get('/paneladmin/p-usuarios-ativar/{id}', [usuariosController::class, 'frm_usuarios_ativar'])->name('usuarios.ativar');
+
+//
