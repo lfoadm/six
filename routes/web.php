@@ -18,3 +18,7 @@ Route::get('/paneladmin/homeadmin', [panelController::class, 'homeadmin'])->name
 Route::get('/paneladmin/p-usuarios', [usuariosController::class, 'index'])->name('usuarios.index');
 Route::get('/paneladmin/p-usuarios-incluir', [usuariosController::class, 'create'])->name('usuarios.create');
 Route::post('/paneladmin/p-usuarios-salva-inclusao', [usuariosController::class, 'store'])->name('usuarios.store');
+Route::get('/paneladmin/p-usuarios-editar/{id}', [usuariosController::class, 'edit'])->name('usuarios.edit');
+Route::post('/paneladmin/p-usuarios-salva-alteracao', [usuariosController::class, 'update'])->name('usuarios.update');
+Route::get('/paneladmin/p-usuarios-excluir/{id}', [usuariosController::class, 'show'])->name('usuarios.show');
+Route::post('/paneladmin/p-usuarios-salva-exclusao', [usuariosController::class, 'destroy'])->name('usuarios.destroy');

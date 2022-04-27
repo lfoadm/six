@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="content">
-                <a href="{{ route('usuarios.create') }}" style="margin-bottom: 20px" class="btn btn-info btn-lg"><i
+                <a href="{{ route('usuarios.create') }}" style="margin-bottom: 20px" class="btn btn-success btn-lg"><i
                     class="fas fa-plus"></i></a>
                 <div class="row">
                     <div class="col-12">
@@ -48,9 +48,9 @@
                                                                 @endif
                                                             </td>
                                                             <td style="width: 15%">
-                                                                <a href="{{-- route('usuarios.edit',['id'=>$dado->id]) --}}"><i class="fas fa-edit" style="color: black; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.edit',['id'=>$dado->id]) }}"><i class="fas fa-edit" style="color: black; margin-right:10px"></i></a>
                                                                 <a href="{{-- route('usuarios.permissoes.show',['id'=>$dado->id]) --}}"><i class="fas fa-user-lock" style="color: black; margin-right:10px"></i></a>
-                                                                <a href="{{-- route('usuarios.show',['id'=>$dado->id]) --}}"><i class="fas fa-trash-alt" style="color:brown; margin-right:10px"></i></a>
+                                                                <a href="{{ route('usuarios.show',['id'=>$dado->id]) }}"><i class="fas fa-trash-alt" style="color:brown; margin-right:10px"></i></a>
                                                                 @if($dado->ativo)
                                                                     <a href="/paneladmin/p-usuarios-desativar/{{ $dado->id }}"><i class="fas fa-user-slash" style="color:black; margin-right:10px"></i></a>
                                                                 @else
