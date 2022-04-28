@@ -16,7 +16,7 @@ class usuariosController extends Controller
     {
         if(Session::get('lg_logado') && Session::get('lg_permissao001'))
         {
-            $dados = DB::table('t_usuarios')->where('t_usuarios.id', '!=', Session::get('lg_id'))->orderBy('nome', 'asc')->paginate(2);
+            $dados = DB::table('t_usuarios')->where('t_usuarios.id', '!=', Session::get('lg_id'))->orderBy('nome', 'asc')->paginate(10);
             return view('admin.panel.p-list-usuarios', compact('dados'));
         }
         else

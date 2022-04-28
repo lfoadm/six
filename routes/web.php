@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\panelController;
+use App\Http\Controllers\Admin\profileController;
 use App\Http\Controllers\Auth\usuariosController;
 use App\Http\Controllers\Site\pagesController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,10 @@ Route::post('/paneladmin/p-usuarios-salva-permissoes', [usuariosController::clas
 Route::get('/paneladmin/p-usuarios-desativar/{id}', [usuariosController::class, 'frm_usuarios_desativar'])->name('usuarios.desativar');
 Route::get('/paneladmin/p-usuarios-ativar/{id}', [usuariosController::class, 'frm_usuarios_ativar'])->name('usuarios.ativar');
 
-//
+//Perfil de usuários
+Route::get('paneladmin/p-usuarios-profile', [profileController::class, 'frm_usuarios_profile'])->name('usuarios.profile');
+Route::post('paneladmin/p-usuarios-profile-salva-dados', [profileController::class, 'frm_usuarios_profile_salva_dados'])->name('profile.salvaDados');
+Route::post('paneladmin/p-usuarios-profile-salva-senha', [profileController::class, 'frm_usuarios_profile_salva_senha'])->name('profile.salvaSenha');
+Route::get('paneladmin/p-usuarios-profile-profile-foto', [profileController::class, 'frm_usuarios_profile_profile_foto'])->name('profile.profileFoto');
+Route::post('paneladmin/p-usuarios-profile-salva-foto', [profileController::class, 'frm_usuarios_profile_picture_salva'])->name('profile.pictureSalva');
+Route::get('paneladmin/p-usuarios-profile-exclui-foto', [profileController::class, 'frm_usuarios_profile_picture_exclui'])->name('profile.pictureExclui');

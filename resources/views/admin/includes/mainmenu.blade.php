@@ -142,11 +142,11 @@
                 @if(Session::get('lg_foto'))
                     <img src="{{ asset('/img/usuarios') }}/{{ Session::get('lg_nome_foto') }}" class="img-circle elevation-2">
                 @else
-                    <img src="{{ asset('/img/user.png') }}" class="img-circle elevation-2">
+                    <img src="{{ asset('/img/usuarios/Default.jpg') }}" class="img-circle elevation-2">
                 @endif
             </div>
             <div class="info">
-                <a href="{{-- route('usuarios.profile') --}}" class="d-block">{{Session::get('lg_nick')}}</a>
+                <a href="{{ route('usuarios.profile') }}" class="d-block">{{Session::get('lg_nick')}}</a>
             </div>
         </div>
 
@@ -204,6 +204,11 @@
                     </a>
                 </li>
                 @endif
+                <li class="nav-item">
+                    <a href="{{ route('admin.login') }}" class="nav-link">
+                        <p class="badge bg-danger" style="color: red">Sair</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class panelController extends Controller
 {
+    //=================== Entrar no painel - login ======================================//
     public function login()
     {
         Session::put('lg_logado', false);
@@ -21,6 +22,7 @@ class panelController extends Controller
         return view('admin.panel.frm_login');
     }
 
+    //=================== Consulta e efetua o login ======================================//
     public function efetlogin(Request $request)
     {
         $dados = DB::table('t_usuarios')->where('usuario', $request->usuario)->first();
@@ -55,6 +57,7 @@ class panelController extends Controller
         }
     }
 
+    //=================== PAGINA INICIAL ======================================//
     public function homeadmin()
     {
         if(!Session::get('lg_logado'))
