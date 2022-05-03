@@ -197,16 +197,25 @@
                     </ul>
                 </li> --}}
                 @if(Session::get('lg_permissao001'))
-                <li class="nav-item">
-                    <a href="{{ route('usuarios.index') }}" class="nav-link">
-                        <i class="fas fa-users"></i>
-                        <p>Usuários</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="{{ route('usuarios.index') }}" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <p>Usuários</p>
+                        </a>
+                    </li>
+                @endif
+                @if(Session::get('lg_permissao002'))
+                    <li class="nav-item">
+                        <a href="{{ route('menus.index') }}" class="nav-link">
+                            <i class="fas fa-th-list"></i>
+                            <p>Menus</p>
+                        </a>
+                    </li>
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.login') }}" class="nav-link">
-                        <p class="badge bg-danger" style="color: red">Sair</p>
+                        <i style="color: red" class="fas fa-power-off"></i>
+                        <p> Sair</p>
                     </a>
                 </li>
             </ul>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\menusController;
 use App\Http\Controllers\Admin\panelController;
 use App\Http\Controllers\Admin\profileController;
 use App\Http\Controllers\Auth\usuariosController;
@@ -39,3 +40,16 @@ Route::post('paneladmin/p-usuarios-profile-salva-senha', [profileController::cla
 Route::get('paneladmin/p-usuarios-profile-profile-foto', [profileController::class, 'frm_usuarios_profile_profile_foto'])->name('profile.profileFoto');
 Route::post('paneladmin/p-usuarios-profile-salva-foto', [profileController::class, 'frm_usuarios_profile_picture_salva'])->name('profile.pictureSalva');
 Route::get('paneladmin/p-usuarios-profile-exclui-foto', [profileController::class, 'frm_usuarios_profile_picture_exclui'])->name('profile.pictureExclui');
+
+//Administração de menus
+Route::get('/paneladmin/p-menus', [menusController::class, 'index'])->name('menus.index');
+Route::get('/paneladmin/p-menus-incluir', [menusController::class, 'create'])->name('menus.create');
+Route::post('/paneladmin/p-menus-salva-inclusao', [menusController::class, 'store'])->name('menus.store');
+Route::get('/paneladmin/p-menus-ativar/{id}', [menusController::class, 'frm_menus_ativar'])->name('menus.ativar');
+Route::get('/paneladmin/p-menus-desativar/{id}', [menusController::class, 'frm_menus_desativar'])->name('menus.desativar');
+Route::get('/paneladmin/p-menus-principal-salva/{id}', [menusController::class, 'frm_menus_principal_salva'])->name('menus.principal');
+Route::post('/paneladmin/p-menus-ordenar-salva', [menusController::class, 'frm_menus_ordenar_salva']);
+Route::get('/paneladmin/p-menus-alterar/{id}', [menusController::class, 'edit'])->name('menus.edit');
+Route::post('/paneladmin/p-menus-salva-alteracao', [menusController::class, 'update'])->name('menus.update');
+Route::get('/paneladmin/p-menus-excluir/{id}', [menusController::class, 'destroy'])->name('menus.destroy');
+Route::post('/paneladmin/p-menus-salva-exclusao', [menusController::class, 'destroy_salva'])->name('menus.delete');
