@@ -41,6 +41,31 @@ class menusController extends Controller
         }
     }
 
+    //=================== SALVA O MENU NA BASE DE DADOS ======================================//
+    public function store(Request $request) //frm_usuarios_insert_salva(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $menus = t_artigos::where('id_pai', 0)->count();
+            $link = strtolower(preg_replace("[^a-zA-Z0-9-]", "-", strtr(utf8_decode(trim($request->menu)), utf8_decode("ºª/áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ "), "oa-aaaaeeiooouuncAAAAEEIOOOUUNC-")));
+            $dados = new t_artigos();
+            $dados->menu = $request->menu;
+            $dados->titulo = $request->titulo;
+            $dados->title = $request->title;
+            $dados->keywords = $request->keywords;
+            $dados->descricao = $request->descricao;
+            $dados->link = $link;
+            $dados->ordem = $menus;
+            $dados->save();
+            return redirect()->route('menus.index')->with('success', 'Menu criado com sucesso!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+
     //----------------------------------------------------------------------------------------------
     // MENUS - ALTERAR
     public function edit($id) {
@@ -70,31 +95,6 @@ class menusController extends Controller
             $dados->link = $link;
             $dados->save();
             return redirect()->route('menus.index')->with('success', 'Menu atualizado com sucesso!');
-        }
-        else
-        {
-            return redirect()->route('formLogin');
-        }
-    }
-
-
-    //=================== SALVA O MENU NA BASE DE DADOS ======================================//
-    public function store(Request $request) //frm_usuarios_insert_salva(Request $request)
-    {
-        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
-        {
-            $menus = t_artigos::where('id_pai', 0)->count();
-            $link = strtolower(preg_replace("[^a-zA-Z0-9-]", "-", strtr(utf8_decode(trim($request->menu)), utf8_decode("ºª/áàãâéêíóôõúüñçÁÀÃÂÉÊÍÓÔÕÚÜÑÇ "), "oa-aaaaeeiooouuncAAAAEEIOOOUUNC-")));
-            $dados = new t_artigos();
-            $dados->menu = $request->menu;
-            $dados->titulo = $request->titulo;
-            $dados->title = $request->title;
-            $dados->keywords = $request->keywords;
-            $dados->descricao = $request->descricao;
-            $dados->link = $link;
-            $dados->ordem = $menus;
-            $dados->save();
-            return redirect()->route('menus.index')->with('success', 'Menu criado com sucesso!');
         }
         else
         {
@@ -208,5 +208,80 @@ class menusController extends Controller
             return redirect()->route('formLogin');
         }
     }
+
+    //=================== ADMINISTRAÇÃO =====================================//
+    //=================== CONTEUDOS ========================================//
+    //=================== DOS MENUS =======================================//
+
+    //=================== LISTA DE CONTEUDOS DOS MENUS ======================================//
+    public function indexConteudos($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $menu = t_artigos::find($id);
+            $conteudos = t_conteudos::where('id_artigo', $menu->id)->orderBy('ordem','asc')->get();
+            return view('admin.panel.p-list-menus-conteudos', compact('menu', 'conteudos'));
+        }
+        else
+        {
+            return view('admin.panel.frm_login');
+        }
+    }
+
+
+    //=================== INCLUIR CONTEUDOS NOS MENUS ======================================//
+    public function createConteudos($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $menu = t_artigos::find($id);
+            return view('admin.panel.p-frm-menus-conteudos_incluir', compact('id', 'menu'));
+        }
+        else
+        {
+            redirect()->route('formLogin');
+        }
+    }
+
+
+    //=================== SALVA O CONTEUDO DO MENU NA BASE DE DADOS ======================================//
+    public function storeConteudos(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $ordem = t_conteudos::where('id_artigo', $request->id_artigo)->count();
+            $dados = new t_conteudos;
+            $dados->id_artigo = $request->id_artigo;
+            $dados->nome = $request->nome;
+            $dados->conteudo = $request->conteudo;
+            $dados->ordem = $ordem;
+            $dados->save();
+            return redirect()->route('menus.conteudos.index', $request->id_artigo)->with('success', 'Conteúdo criado com sucesso!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+    //=================== ORDENAR CONTEÚDOS DO MENU ======================================//
+    /* public function frm_menus_conteudos_ordenar_salva(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $conteudos = t_conteudos::where('id_artigos', $request->id_artigo)->orderBy('ordem','asc')->get();
+            $itemID = $request->itemID;
+            $itemIndex = $request->itemIndex;
+            $itemMenu = $request->itemMenu;
+            foreach($conteudos as $item)
+            {
+                return t_artigos::where('id', '=', $itemID)->update(array('ordem' => $itemIndex));
+            }
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    } */
 
 }

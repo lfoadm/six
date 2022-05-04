@@ -53,3 +53,10 @@ Route::get('/paneladmin/p-menus-alterar/{id}', [menusController::class, 'edit'])
 Route::post('/paneladmin/p-menus-salva-alteracao', [menusController::class, 'update'])->name('menus.update');
 Route::get('/paneladmin/p-menus-excluir/{id}', [menusController::class, 'destroy'])->name('menus.destroy');
 Route::post('/paneladmin/p-menus-salva-exclusao', [menusController::class, 'destroy_salva'])->name('menus.delete');
+
+//Conteudos dos menus
+Route::get('/paneladmin/p-menus-conteudos/{id}', [menusController::class, 'indexConteudos'])->name('menus.conteudos.index');
+Route::get('/paneladmin/p-menus-conteudos-incluir/{id}', [menusController::class, 'createConteudos'])->name('menus.conteudos.create');
+Route::post('/paneladmin/p-menus-conteudos-salva-inclusao', [menusController::class, 'storeConteudos'])->name('menus.conteudos.store');
+
+Route::post('/paneladmin/p-menus-conteudos-ordenar-salva', [menusController::class, 'frm_menus_conteudos_ordenar_salva']);

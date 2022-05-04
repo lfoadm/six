@@ -38,7 +38,7 @@
                                                         @if(!$item->principal)
                                                             <a href="{{ route('menus.destroy', $item->id) }}" type="button" class="btn mb-1 btn-danger">Excluir</a>
                                                         @endif
-                                                        <a href="{{-- route('menus.edit',$item->id) --}}" type="button" class="btn mb-1 btn-dark">Conteúdos</a>
+                                                        <a href="{{ route('menus.conteudos.index', $item->id) }}" type="button" class="btn mb-1 btn-dark">Conteúdos</a>
                                                         @if(!$item->principal)
                                                             <a href="{{ route('menus.principal', $item->id) }}" type="button" class="btn mb-1 btn-success">Tornar Principal</a>
                                                             @if($item->ativo)
