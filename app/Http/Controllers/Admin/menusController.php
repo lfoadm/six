@@ -20,6 +20,7 @@ class menusController extends Controller
         if(Session::get('lg_logado') && Session::get('lg_permissao002'))
         {
             $menus = t_artigos::where('id_pai', 0)->where('tipo', 'M')->orderBy('ordem','asc')->get();
+            //dd($menus->count() < 0);
             return view('admin.panel.p-list-menus', compact('menus'));
         }
         else
@@ -150,6 +151,7 @@ class menusController extends Controller
 
             $dados = t_artigos::find($id);
             $dados->principal = true;
+            $dados->ativo = true;
             $dados->save();
             return redirect()->route('menus.index')->with('info', 'Menu salvo como página principal!');
         }
@@ -374,23 +376,23 @@ class menusController extends Controller
     }
 
     //=================== ORDENAR CONTEÚDOS DO MENU ======================================//
-    /* public function frm_menus_conteudos_ordenar_salva(Request $request)
+    public function frm_menus_conteudos_ordenar_salva(Request $request)
     {
         if(Session::get('lg_logado') && Session::get('lg_permissao002'))
         {
-            $conteudos = t_conteudos::where('id_artigos', $request->id_artigo)->orderBy('ordem','asc')->get();
+            $conteudos = t_conteudos::where('id_artigo', $request->itemMenu)->orderBy('ordem','asc')->get();
             $itemID = $request->itemID;
             $itemIndex = $request->itemIndex;
             $itemMenu = $request->itemMenu;
             foreach($conteudos as $item)
             {
-                return t_artigos::where('id', '=', $itemID)->update(array('ordem' => $itemIndex));
+                return t_conteudos::where('id', '=', $itemID)->where('id_artigo', '=', $itemMenu)->update(array('ordem' => $itemIndex));
             }
         }
         else
         {
             return redirect()->route('formLogin');
         }
-    } */
+    }
 
 }

@@ -24,7 +24,7 @@
                         <h4 class="card-title"></h4>
                         <div class="col-sm-12">
                             @include('admin.includes.alerts.alert')
-
+                            @if($conteudos->count() > 0)
                                 <ul id="menu">
                                     @foreach ($conteudos as $item)
                                         <li id="{{ $item->id }}" @if (!$item->ativo) style="background-color: #300c05; color: #fff" @endif class="ui-state-default">
@@ -49,7 +49,9 @@
                                         </li>
                                     @endforeach
                                 </ul>
-
+                            @else
+                                <p style="font-style: italic">Nenhum conteúdo neste menu</p>
+                            @endif
                         </div>
                     </div>
                 </div>

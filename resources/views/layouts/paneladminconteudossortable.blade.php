@@ -35,6 +35,7 @@
                     $.map($(this).find('li'), function(el) {
                         var itemID = el.id;
                         var itemIndex = $(el).index();
+                        var itemMenu = {{ $menu->id }}
                         $.ajax({
                             url: "/paneladmin/p-menus-conteudos-ordenar-salva",
                             type: "POST",

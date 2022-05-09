@@ -64,5 +64,4 @@ Route::get('/paneladmin/p-menus-conteudos-excluir/{id}', [menusController::class
 Route::post('/paneladmin/p-menus-conteudos-salva-exclusao', [menusController::class, 'destroyConteudos'])->name('menus.conteudos.destroy');
 Route::get('/paneladmin/p-menus-conteudos-ativar/{id}', [menusController::class, 'frm_menus_conteudos_ativar'])->name('menus.conteudos.ativar');
 Route::get('/paneladmin/p-menus-conteudos-desativar/{id}', [menusController::class, 'frm_menus_conteudos_desativar'])->name('menus.conteudos.desativar');
-
 Route::post('/paneladmin/p-menus-conteudos-ordenar-salva', [menusController::class, 'frm_menus_conteudos_ordenar_salva']);
