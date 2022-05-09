@@ -207,14 +207,14 @@
                 @if(Session::get('lg_permissao002'))
                     <li class="nav-item">
                         <a href="{{ route('menus.index') }}" class="nav-link">
-                            <i class="fas fa-th-list"></i>
+                            <i class="fas fa-bars"></i>
                             <p>Menus</p>
                         </a>
                     </li>
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.login') }}" class="nav-link">
-                        <i style="color: red" class="fas fa-power-off"></i>
+                        <i class="fas fa-sign-out-alt"></i>
                         <p> Sair</p>
                     </a>
                 </li>

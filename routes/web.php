@@ -58,5 +58,11 @@ Route::post('/paneladmin/p-menus-salva-exclusao', [menusController::class, 'dest
 Route::get('/paneladmin/p-menus-conteudos/{id}', [menusController::class, 'indexConteudos'])->name('menus.conteudos.index');
 Route::get('/paneladmin/p-menus-conteudos-incluir/{id}', [menusController::class, 'createConteudos'])->name('menus.conteudos.create');
 Route::post('/paneladmin/p-menus-conteudos-salva-inclusao', [menusController::class, 'storeConteudos'])->name('menus.conteudos.store');
+Route::get('/paneladmin/p-menus-conteudos-alterar/{id}', [menusController::class, 'editConteudos'])->name('menus.conteudos.edit');
+Route::post('/paneladmin/p-menus-conteudos-salva-alteracao', [menusController::class, 'updateConteudos'])->name('menus.conteudos.update');
+Route::get('/paneladmin/p-menus-conteudos-excluir/{id}', [menusController::class, 'showConteudos'])->name('menus.conteudos.show');
+Route::post('/paneladmin/p-menus-conteudos-salva-exclusao', [menusController::class, 'destroyConteudos'])->name('menus.conteudos.destroy');
+Route::get('/paneladmin/p-menus-conteudos-ativar/{id}', [menusController::class, 'frm_menus_conteudos_ativar'])->name('menus.conteudos.ativar');
+Route::get('/paneladmin/p-menus-conteudos-desativar/{id}', [menusController::class, 'frm_menus_conteudos_desativar'])->name('menus.conteudos.desativar');
 
 Route::post('/paneladmin/p-menus-conteudos-ordenar-salva', [menusController::class, 'frm_menus_conteudos_ordenar_salva']);

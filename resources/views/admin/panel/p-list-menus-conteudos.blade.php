@@ -35,12 +35,12 @@
                                                     </tr>
                                                     <tr>
                                                         <td style="text-align:left;">
-                                                            <a href="{{-- route('menus.conteudos.edit',$item->id) --}}" type="button" class="btn mb-1 btn-primary">Alterar</a>
-                                                            <a href="{{-- route('menus.conteudos.destroy',$item->id) --}}" type="button" class="btn mb-1 btn-danger">Excluir</a>
+                                                            <a href="{{ route('menus.conteudos.edit',$item->id) }}" type="button" class="btn mb-1 btn-primary">Alterar</a>
+                                                            <a href="{{ route('menus.conteudos.show',$item->id) }}" type="button" class="btn mb-1 btn-danger">Excluir</a>
                                                             @if($item->ativo)
-                                                                <a href="{{-- route('menus.conteudos.desativar',$item->id) --}}" type="button" class="btn mb-1 btn-danger">Desativar</a>
+                                                                <a href="{{ route('menus.conteudos.desativar',$item->id) }}" type="button" class="btn mb-1 btn-danger">Desativar</a>
                                                             @else
-                                                                <a href="{{-- route('menus.conteudos.ativar',$item->id) --}}" type="button" class="btn mb-1 btn-success">Ativar</a>
+                                                                <a href="{{ route('menus.conteudos.ativar',$item->id) }}" type="button" class="btn mb-1 btn-success">Ativar</a>
                                                             @endif
                                                         </td>
                                                     </tr>

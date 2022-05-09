@@ -264,6 +264,115 @@ class menusController extends Controller
         }
     }
 
+
+    //=================== ALTERAR CONTEUDOS NOS MENUS ======================================//
+    public function editConteudos($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $dados = t_conteudos::find($id);
+            $menu = t_artigos::find($dados->id_artigo);
+            return view('admin.panel.p-frm-menus-conteudos_alterar', compact('dados', 'menu'));
+        }
+        else
+        {
+            redirect()->route('formLogin');
+        }
+    }
+
+
+    //=================== SALVA ALTERAÇÃO CONTEUDO DO MENU NA BASE DE DADOS ======================================//
+    public function updateConteudos(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $dados = t_conteudos::find($request->id_conteudo);
+            //dd($request->id_conteudo);
+            $dados->nome = $request->nome;
+            $dados->conteudo = $request->conteudo;
+            $dados->save();
+            return redirect()->route('menus.conteudos.index', $request->id_artigo)->with('success', 'Conteúdo alterado com sucesso!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+    //=================== EXCLUIR CONTEUDOS NOS MENUS ======================================//
+    public function showConteudos($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $dados = t_conteudos::find($id);
+            $menu = t_artigos::find($dados->id_artigo);
+            return view('admin.panel.p-frm-menus-conteudos_excluir', compact('dados', 'menu'));
+        }
+        else
+        {
+            redirect()->route('formLogin');
+        }
+    }
+
+    //=================== SALVA EXCLUSÃO CONTEUDO DO MENU NA BASE DE DADOS ======================================//
+    public function destroyConteudos(Request $request)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            t_conteudos::destroy($request->id_conteudo);
+            $order = t_conteudos::where('id_artigo', $request->id_artigo)->count();
+            $conteudos = t_conteudos::where('id_artigo', $request->id_artigo)->get();
+            $neworder = 0;
+            foreach($conteudos as $conteudo)
+            {
+                $dados = t_conteudos::find($conteudo->id);
+                $dados->ordem = $neworder;
+                $dados->save();
+                $neworder++;
+            }
+            return redirect()->route('menus.conteudos.index', $request->id_artigo)->with('danger', 'Conteúdo excluído com sucesso!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+    //=================== ATIVAR CONTEUDOS MENU ======================================//
+    public function frm_menus_conteudos_ativar($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $dados = t_conteudos::find($id);
+            $id_artigo = $dados->id_artigo;
+            $dados->ativo = true;
+            $dados->save();
+            return redirect()->route('menus.conteudos.index', $id_artigo)->with('success', 'Conteúdo ativado!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
+
+    //=================== DESATIVAR CONTEUDOS MENU ======================================//
+    public function frm_menus_conteudos_desativar($id)
+    {
+        if(Session::get('lg_logado') && Session::get('lg_permissao002'))
+        {
+            $dados = t_conteudos::find($id);
+            $id_artigo = $dados->id_artigo;
+            $dados->ativo = false;
+            $dados->save();
+            return redirect()->route('menus.conteudos.index', $id_artigo)->with('danger', 'Conteúdo desativado!');
+        }
+        else
+        {
+            return redirect()->route('formLogin');
+        }
+    }
+
     //=================== ORDENAR CONTEÚDOS DO MENU ======================================//
     /* public function frm_menus_conteudos_ordenar_salva(Request $request)
     {
