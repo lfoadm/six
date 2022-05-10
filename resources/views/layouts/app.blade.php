@@ -34,25 +34,27 @@
     </section>
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
-            <h1 class="logo"><a href="index.html">Six</a></h1>
+            <h1 class="logo"><a href="{{ route('pages.index') }}">Six</a></h1>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="{{ route('pages.index') }}" class="nav-link scrollto active">Home</a></li>
-                    <li><a class="nav-link scrollto" href="{{ route('admin.login') }}">Painel</a></li>
+                    @foreach ($menus as $menu)
+                        <li><a href="/{{ $menu->link }}" class="nav-link scrollto">{{ $menu->menu }}</a></li>
+                    @endforeach
                 </ul>
                 <!-- icone de menu para mobile -->
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
         </div>
     </header>
-    <section id="hero" class="d-flex align-items-center">
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
-            <h1>SIX</h1>
-            <h2>Seu site dinâmico e automático!</h2>
-            {{-- <a href="{{ route('pages.index') }}" class="btn-get-started scrollto">Entrar</a> --}}
-        </div>
-    </section>
-
+    @if($pagina->principal)
+        <section id="hero" class="d-flex align-items-center">
+            <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
+                <h1>SIX</h1>
+                <h2>Seu site dinâmico e automático!</h2>
+                {{-- <a href="{{ route('pages.index') }}" class="btn-get-started scrollto">Entrar</a> --}}
+            </div>
+        </section>
+    @endif
     <main id="main">
         @yield('page')
     </main>

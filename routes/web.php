@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 // Gestão do Site
 Route::get('/', [pagesController::class, 'index'])->name('pages.index');
+Route::get('/{link}', [pagesController::class, 'buscapagina']);
 
 // Administração painel
 Route::get('/paneladmin', [panelController::class, 'login'])->name('admin.login');
