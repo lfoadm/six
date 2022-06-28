@@ -3,14 +3,11 @@
 use App\Http\Controllers\Admin\menusController;
 use App\Http\Controllers\Admin\panelController;
 use App\Http\Controllers\Admin\profileController;
+use App\Http\Controllers\Admin\submenusController;
 use App\Http\Controllers\Auth\usuariosController;
 use App\Http\Controllers\Site\pagesController;
 use Illuminate\Support\Facades\Route;
 
-
-// Gestão do Site
-Route::get('/', [pagesController::class, 'index'])->name('pages.index');
-Route::get('/{link}', [pagesController::class, 'buscapagina']);
 
 // Administração painel
 Route::get('/paneladmin', [panelController::class, 'login'])->name('admin.login');
@@ -66,3 +63,16 @@ Route::post('/paneladmin/p-menus-conteudos-salva-exclusao', [menusController::cl
 Route::get('/paneladmin/p-menus-conteudos-ativar/{id}', [menusController::class, 'frm_menus_conteudos_ativar'])->name('menus.conteudos.ativar');
 Route::get('/paneladmin/p-menus-conteudos-desativar/{id}', [menusController::class, 'frm_menus_conteudos_desativar'])->name('menus.conteudos.desativar');
 Route::post('/paneladmin/p-menus-conteudos-ordenar-salva', [menusController::class, 'frm_menus_conteudos_ordenar_salva']);
+
+//Conteudos dos sub-menus
+Route::get('/paneladmin/p-select-menu', [submenusController::class, 'select_menu'])->name('select.menu');
+Route::get('/paneladmin/p-submenus/{id_menu}', [submenusController::class, 'index'])->name('submenus.index');
+Route::get('/paneladmin/p-submenus-incluir/{id_menu}', [submenusController::class, 'create'])->name('submenus.create');
+Route::post('/paneladmin/p-submenus-salva-inclusao', [submenusController::class, 'store'])->name('submenus.store');
+
+Route::get('/paneladmin/p-submenus-alterar/{id}', [submenusController::class, 'edit'])->name('submenus.edit');
+Route::get('/paneladmin/p-submenus-excluir/{id}', [menusController::class, 'destroy'])->name('submenus.destroy');
+
+// Gestão do Site
+Route::get('/', [pagesController::class, 'index'])->name('pages.index');
+Route::get('/{link}', [pagesController::class, 'buscapagina']);

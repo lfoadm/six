@@ -212,6 +212,14 @@
                         </a>
                     </li>
                 @endif
+                @if(Session::get('lg_permissao003'))
+                    <li class="nav-item">
+                        <a href="{{ route('select.menu') }}" class="nav-link">
+                            <i class="fas fa-bars"></i>
+                            <p>Sub-Menus</p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.login') }}" class="nav-link">
                         <i class="fas fa-sign-out-alt"></i>

@@ -12,11 +12,11 @@
     <section class="inner-page">
         <div class="container newsletter">
             <div class="row">
+                @foreach ($conteudos as $conteudo)
                 <div class="col-md-12">
-                    @foreach ($conteudos as $conteudo)
-                        <p>@php echo $conteudo->conteudo @endphp</p>
-                    @endforeach
+                    <p>@php echo $conteudo->conteudo @endphp</p>
                 </div>
+                @endforeach
             </div>
         </div>
     </section>

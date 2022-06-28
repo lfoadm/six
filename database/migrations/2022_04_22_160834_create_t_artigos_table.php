@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('t_artigos', function (Blueprint $table) {
             $table->id();
             $table->integer('id_pai')->default(0);
+            $table->integer('id_menu')->default(0);
             $table->boolean('ativo')->default(0);
             $table->integer('ordem')->default(0);
             $table->char('tipo')->default('M'); // (M)enu - (S)ubmenu - (A)rtigo - (X)sistema

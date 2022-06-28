@@ -38,7 +38,11 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     @foreach ($menus as $menu)
-                        <li><a href="/{{ $menu->link }}" class="nav-link scrollto">{{ $menu->menu }}</a></li>
+                        <li>
+                            <a href="/{{ $menu->link }}" class="nav-link scrollto
+                                @if(Session::get('lg_menu')==$menu->id) active @endif">{{ $menu->menu }}
+                            </a>
+                        </li>
                     @endforeach
                 </ul>
                 <!-- icone de menu para mobile -->
@@ -51,7 +55,7 @@
             <div class="container position-relative" data-aos="fade-up" data-aos-delay="500">
                 <h1>SIX</h1>
                 <h2>Seu site dinâmico e automático!</h2>
-                {{-- <a href="{{ route('pages.index') }}" class="btn-get-started scrollto">Entrar</a> --}}
+                <a href="{{ route('pages.index') }}" class="btn-get-started scrollto">Entrar</a>
             </div>
         </section>
     @endif
